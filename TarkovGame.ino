@@ -8,6 +8,7 @@ const int LCD_ADDRESS = 0x27;
 LiquidCrystal_I2C lcd(LCD_ADDRESS, 16, 2);
 
 const int INCORRECT_CODE_FILE_ID = 21;
+const int EXIT_INTRO_FILE_ID = 22;
 
 CodeHolder codeHolder;
 
@@ -61,6 +62,7 @@ void loop() {
     lcd.print("Pravilnii kod!");
     int response = codeHolder.take(code.getValue());
     Serial.println("Code is correct!");
+    playFile(EXIT_INTRO_FILE_ID);
     playFile(response);
   } else {
     lcd.clear();
